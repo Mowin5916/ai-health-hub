@@ -1,0 +1,18 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Datasets (DO NOT PUSH)
+backend/data/
+*.csv
+
+# Trained models (DO NOT PUSH)
+backend/ml/**/saved_model/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
