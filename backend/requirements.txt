@@ -1,0 +1,10 @@
+numpy
+pandas
+matplotlib
+scikit-learn
+tensorflow
+librosa 
+soundfile 
+joblib
+fastapi 
+uvicorn

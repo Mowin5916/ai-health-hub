@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from backend.ai_core import predict_ecg, predict_eeg, classify_neuro_state
 
 app = FastAPI(title="AI Health Hub – ANN & DL Backend")
+
 from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
@@ -12,6 +13,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # ---------- REQUEST SCHEMAS ----------
 
