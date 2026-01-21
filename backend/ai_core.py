@@ -61,14 +61,15 @@ EEG_MODEL_PATH = "backend/ml/eeg/saved_model/eeg_ann_model.keras"
 eeg_model = safe_load_model(EEG_MODEL_PATH)
 
 def predict_eeg(eeg_features):
-    """
-    eeg_features: list or numpy array of length 178
-    """
-    if eeg_model is None:
-        return "Model not loaded"
+    eeg_features = np.array(eeg_features, dtype=np.float32)
 
-    eeg_features = np.array(eeg_features, dtype=np.float32).reshape(1, -1)
+    # 🔑 NORMALIZATION (CRITICAL FIX)
+    eeg_features = (eeg_features - np.mean(eeg_features)) / (np.std(eeg_features) + 1e-6)
+
+    eeg_features = eeg_features.reshape(1, -1)
+
     prob = eeg_model.predict(eeg_features, verbose=0)[0][0]
+
     return "Seizure" if prob > 0.5 else "Normal"
 
 
